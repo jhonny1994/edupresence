@@ -1,0 +1,24 @@
+name: edupresence
+repository: https://github.com/jhonny1994/edupresence
+
+packages:
+  - packages/**
+  - apps/**
+
+scripts:
+  analyze:
+    run: melos exec -- "flutter analyze"
+  format:
+    run: melos exec -- "dart format ."
+  clean:
+    run: melos exec -- "flutter clean"
+  get:
+    run: melos exec -- "flutter pub get"
+  build:windows:
+    run: melos exec --scope="professor" -- "flutter build windows"
+  build:android:
+    run: melos exec --scope="student" -- "flutter build apk"
+
+command:
+  bootstrap:
+    usePubspecOverrides: true

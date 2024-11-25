@@ -1,0 +1,8 @@
+name: edupresence
+description: A monorepo for EduPresence project.
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dev_dependencies:
+  melos: ^6.2.0
