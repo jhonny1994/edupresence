@@ -1,8 +1,7 @@
 name: CI/CD
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:  # Manual trigger
   pull_request:
     branches: [ main ]
 
@@ -29,7 +28,7 @@ jobs:
   build-android:
     name: Build Android App
     needs: analyze
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch'  # Only run on manual trigger
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -47,7 +46,7 @@ jobs:
   build-windows:
     name: Build Windows App
     needs: analyze
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch'  # Only run on manual trigger
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4

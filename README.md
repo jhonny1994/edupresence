@@ -4,7 +4,7 @@ A modern attendance tracking system built with Flutter, featuring a Windows desk
 
 ## Project Roadmap
 
-### Phase 1: Setup & Infrastructure ✅
+### Phase 1: Setup & Infrastructure 
 - [x] Initialize Monorepo with Melos
 - [x] Setup GitHub repository
 - [x] Configure base melos.yaml
@@ -12,18 +12,18 @@ A modern attendance tracking system built with Flutter, featuring a Windows desk
 - [x] Setup CI/CD pipelines
 - [x] Setup Supabase project
 
-### Phase 2: Core Packages Development ⏳
-- [ ] edupresence_core
-  - [ ] Models
+### Phase 2: Core Packages Development 
+- [-] edupresence_core
+  - [x] Models
   - [ ] Repositories
-  - [ ] Providers
+  - [x] Providers
 - [ ] edupresence_ui
   - [ ] Themes
   - [ ] Shared widgets
-- [ ] edupresence_supabase
-  - [ ] Supabase client
-  - [ ] Auth services
-  - [ ] Database services
+- [x] edupresence_supabase
+  - [x] Supabase client
+  - [x] Auth services
+  - [x] Database services
 
 ### Phase 3: Apps Development
 - [ ] Professor App (Windows)
@@ -71,12 +71,13 @@ edupresence/
 ## Available Commands
 
 - `melos bootstrap`: Install all dependencies
-- `melos run analyze`: Run Flutter analyze
+- `melos run analyze`: Run static analysis
 - `melos run format`: Format code
 - `melos run clean`: Clean build files
-- `melos run get`: Get dependencies
 - `melos run build:windows`: Build Windows app
 - `melos run build:android`: Build Android app
+- `melos run generate`: Generate code
+- `melos run test`: Run tests
 
 ## Getting Started
 
