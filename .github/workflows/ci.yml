@@ -1,0 +1,63 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  analyze:
+    name: Static Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - uses: bluefireteam/melos-action@v3
+      
+      - name: Install Dependencies
+        run: melos bootstrap
+      
+      - name: Verify Formatting
+        run: melos run format
+      
+      - name: Analyze Project
+        run: melos run analyze
+
+  build-android:
+    name: Build Android App
+    needs: analyze
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - uses: bluefireteam/melos-action@v3
+      
+      - name: Install Dependencies
+        run: melos bootstrap
+      
+      - name: Build APK
+        run: melos run build:android
+
+  build-windows:
+    name: Build Windows App
+    needs: analyze
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - uses: bluefireteam/melos-action@v3
+      
+      - name: Install Dependencies
+        run: melos bootstrap
+      
+      - name: Build Windows
+        run: melos run build:windows
