@@ -4,15 +4,15 @@ A modern attendance tracking system built with Flutter, featuring a Windows desk
 
 ## Project Roadmap
 
-### Phase 1: Setup & Infrastructure ⏳
+### Phase 1: Setup & Infrastructure ✅
 - [x] Initialize Monorepo with Melos
 - [x] Setup GitHub repository
 - [x] Configure base melos.yaml
 - [x] Configure root pubspec.yaml
 - [x] Setup CI/CD pipelines
-- [ ] Setup Supabase project
+- [x] Setup Supabase project
 
-### Phase 2: Core Packages Development
+### Phase 2: Core Packages Development ⏳
 - [ ] edupresence_core
   - [ ] Models
   - [ ] Repositories
