@@ -1,5 +1,6 @@
 import 'package:edupresence_supabase/edupresence_supabase.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   final client = ref.watch(supabaseClientProvider);

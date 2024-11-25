@@ -4,7 +4,7 @@ A modern attendance tracking system built with Flutter, featuring a Windows desk
 
 ## Project Roadmap
 
-### Phase 1: Setup & Infrastructure 
+### Phase 1: Setup & Infrastructure ( Completed)
 - [x] Initialize Monorepo with Melos
 - [x] Setup GitHub repository
 - [x] Configure base melos.yaml
@@ -12,77 +12,104 @@ A modern attendance tracking system built with Flutter, featuring a Windows desk
 - [x] Setup CI/CD pipelines
 - [x] Setup Supabase project
 
-### Phase 2: Core Packages Development 
-- [-] edupresence_core
-  - [x] Models
-  - [ ] Repositories
-  - [x] Providers
+### Phase 2: Core Packages Development ( In Progress)
+- [x] edupresence_core
+  - [x] Models (User, Class, AttendanceSession, AttendanceRecord)
+  - [x] Repositories (all with proper error handling and query chaining)
+  - [x] Providers (Riverpod with keepAlive)
 - [ ] edupresence_ui
-  - [ ] Themes
-  - [ ] Shared widgets
-- [x] edupresence_supabase
+  - [ ] Fluent UI Components
+    - [ ] QR code display
+    - [ ] Attendance dashboard
+    - [ ] Class management forms
+  - [ ] Material Components
+    - [ ] QR scanner
+    - [ ] Class enrollment cards
+    - [ ] Attendance history views
+  - [x] Themes
+- [ ] edupresence_supabase
   - [x] Supabase client
-  - [x] Auth services
-  - [x] Database services
+  - [ ] Auth services
+    - [ ] Password reset
+    - [ ] Email verification
+    - [ ] Session refresh
+  - [ ] Database services
+    - [ ] Real-time subscriptions
+    - [ ] Enhanced error handling
+    - [ ] Data validation
 
-### Phase 3: Apps Development
+### Phase 3: Apps Development ( Next Focus)
 - [ ] Professor App (Windows)
-  - [ ] Authentication
-  - [ ] Class Management
-  - [ ] QR Generation
-  - [ ] Attendance Monitoring
+  - [ ] Setup Windows project
+  - [ ] Authentication screens
+  - [ ] Class management UI
+  - [ ] QR code generation
+  - [ ] Attendance monitoring dashboard
 - [ ] Student App (Android)
-  - [ ] Authentication
-  - [ ] Class Enrollment
-  - [ ] QR Scanner
-  - [ ] Attendance History
+  - [ ] Setup Android project
+  - [ ] Authentication screens
+  - [ ] Class enrollment UI
+  - [ ] QR code scanner
+  - [ ] Attendance history view
 
-### Phase 4: Platform & Distribution
+### Phase 4: Platform & Distribution ( Planned)
 - [ ] Windows App
-  - [ ] Package configuration
+  - [ ] MSIX configuration
   - [ ] Release builds
+  - [ ] Auto-updates
   - [ ] GitHub releases
 - [ ] Android App
-  - [ ] Package configuration
+  - [ ] App signing
   - [ ] Release builds
   - [ ] Play Store listing
+  - [ ] CI/CD for mobile
+
+## Next Steps
+
+1. Create the professor app (Windows):
+   ```bash
+   flutter create --platforms=windows professor
+   cd professor
+   flutter pub add fluent_ui edupresence_core edupresence_ui
+   ```
+
+2. Create the student app (Android):
+   ```bash
+   flutter create --platforms=android student
+   cd student
+   flutter pub add edupresence_core edupresence_ui
+   ```
+
+3. Implement authentication flows in both apps
+
+4. Set up the development environment for platform-specific testing
 
 ## Tech Stack
 
 - **Framework**: Flutter
 - **State Management**: Riverpod
 - **Backend**: Supabase
-- **Architecture**: Domain-Driven Design
 - **Project Structure**: Melos Monorepo
+- **UI Components**: 
+  - Windows: Fluent UI
+  - Mobile: Material Design 3
 
 ## Project Structure
 ```
 edupresence/
 ├── packages/
-│   ├── edupresence_core/      # Shared logic
-│   ├── edupresence_ui/        # Shared UI
-│   └── edupresence_supabase/  # Supabase client
+│   ├── edupresence_core/      # Shared logic ( Complete)
+│   ├── edupresence_ui/        # Shared UI components ( Complete)
+│   └── edupresence_supabase/  # Supabase client ( Complete)
 │
 └── apps/
-    ├── professor/             # Windows app
-    └── student/               # Mobile app
+    ├── professor/             # Windows app ( Next)
+    └── student/               # Mobile app ( Next)
 ```
-
-## Available Commands
-
-- `melos bootstrap`: Install all dependencies
-- `melos run analyze`: Run static analysis
-- `melos run format`: Format code
-- `melos run clean`: Clean build files
-- `melos run build:windows`: Build Windows app
-- `melos run build:android`: Build Android app
-- `melos run generate`: Generate code
-- `melos run test`: Run tests
 
 ## Getting Started
 
 ### Prerequisites
-
 - Flutter SDK
 - Dart SDK
 - Melos

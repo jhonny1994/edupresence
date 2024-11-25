@@ -8,7 +8,8 @@ final databaseRepositoryProvider = Provider<DatabaseRepository>((ref) {
 });
 
 /// Provider for user profile data
-final userProfileProvider = FutureProvider.family<Map<String, dynamic>?, String>(
+final userProfileProvider =
+    FutureProvider.family<Map<String, dynamic>?, String>(
   (ref, userId) async {
     final repository = ref.watch(databaseRepositoryProvider);
     return repository.getProfile(userId);

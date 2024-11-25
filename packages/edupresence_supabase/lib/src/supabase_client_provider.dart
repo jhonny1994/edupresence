@@ -1,7 +1,10 @@
 import 'package:riverpod/riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-/// Provider for accessing the Supabase client
-final supabaseClientProvider = Provider<SupabaseClient>((ref) {
+part 'supabase_client_provider.g.dart';
+
+@Riverpod(keepAlive: true)
+SupabaseClient supabaseClient(Ref ref) {
   return Supabase.instance.client;
-});
+}

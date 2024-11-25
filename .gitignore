@@ -2,8 +2,6 @@
 .atom/
 .idea/
 .vscode/*
-!.vscode/tasks.json
-!.vscode/settings.json
 
 .packages
 .pub/
