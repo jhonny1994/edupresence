@@ -9,7 +9,7 @@ A modern attendance tracking system built with Flutter, featuring a Windows desk
 - [x] Setup GitHub repository
 - [x] Configure base melos.yaml
 - [x] Configure root pubspec.yaml
-- [ ] Setup CI/CD pipelines
+- [x] Setup CI/CD pipelines
 - [ ] Setup Supabase project
 
 ### Phase 2: Core Packages Development
