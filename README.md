@@ -4,7 +4,7 @@ A modern attendance tracking system built with Flutter, featuring a Windows desk
 
 ## Project Roadmap
 
-### Phase 1: Setup & Infrastructure ( Completed)
+### Phase 1: Setup & Infrastructure (✅ Completed)
 - [x] Initialize Monorepo with Melos
 - [x] Setup GitHub repository
 - [x] Configure base melos.yaml
@@ -12,33 +12,33 @@ A modern attendance tracking system built with Flutter, featuring a Windows desk
 - [x] Setup CI/CD pipelines
 - [x] Setup Supabase project
 
-### Phase 2: Core Packages Development ( In Progress)
+### Phase 2: Core Packages Development (✅ Completed)
 - [x] edupresence_core
   - [x] Models (User, Class, AttendanceSession, AttendanceRecord)
   - [x] Repositories (all with proper error handling and query chaining)
   - [x] Providers (Riverpod with keepAlive)
-- [ ] edupresence_ui
-  - [ ] Fluent UI Components
-    - [ ] QR code display
-    - [ ] Attendance dashboard
-    - [ ] Class management forms
-  - [ ] Material Components
-    - [ ] QR scanner
-    - [ ] Class enrollment cards
-    - [ ] Attendance history views
+- [x] edupresence_ui
+  - [x] Fluent UI Components
+    - [x] QR code display
+    - [x] Attendance dashboard
+    - [x] Class management forms
+  - [x] Material Components
+    - [x] QR scanner
+    - [x] Class enrollment cards
+    - [x] Attendance history views
   - [x] Themes
-- [ ] edupresence_supabase
+- [x] edupresence_supabase
   - [x] Supabase client
-  - [ ] Auth services
-    - [ ] Password reset
-    - [ ] Email verification
-    - [ ] Session refresh
-  - [ ] Database services
-    - [ ] Real-time subscriptions
-    - [ ] Enhanced error handling
-    - [ ] Data validation
+  - [x] Auth services
+    - [x] Password reset
+    - [x] Email verification
+    - [x] Session refresh
+  - [x] Database services
+    - [x] Real-time subscriptions
+    - [x] Enhanced error handling
+    - [x] Data validation
 
-### Phase 3: Apps Development ( Next Focus)
+### Phase 3: Apps Development (🚧 In Progress)
 - [ ] Professor App (Windows)
   - [ ] Setup Windows project
   - [ ] Authentication screens
@@ -52,7 +52,7 @@ A modern attendance tracking system built with Flutter, featuring a Windows desk
   - [ ] QR code scanner
   - [ ] Attendance history view
 
-### Phase 4: Platform & Distribution ( Planned)
+### Phase 4: Platform & Distribution (⏳ Planned)
 - [ ] Windows App
   - [ ] MSIX configuration
   - [ ] Release builds
