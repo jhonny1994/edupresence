@@ -1,12 +1,25 @@
-// Models
-export 'src/models/attendance_record.dart';
-export 'src/models/attendance_session.dart';
-export 'src/models/class.dart';
-export 'src/models/user.dart';
-
-// Providers
-export 'src/providers/auth_provider.dart';
-export 'src/providers/database_provider.dart';
-
+// Entities
+export 'src/features/attendance/domain/entities/attendance_record.dart';
+export 'src/features/attendance/domain/entities/attendance_session.dart';
+export 'src/features/attendance/domain/repositories/attendance_failure.dart';
+export 'src/features/attendance/domain/repositories/i_attendance_repository.dart';
+export 'src/features/auth/domain/entities/user.dart';
 // Repositories
-export 'src/repositories/repositories.dart';
+export 'src/features/auth/domain/repositories/auth_failure.dart';
+export 'src/features/auth/domain/repositories/i_auth_repository.dart';
+export 'src/features/class_management/domain/entities/class.dart';
+export 'src/features/class_management/domain/repositories/class_failure.dart';
+export 'src/features/class_management/domain/repositories/i_class_repository.dart';
+// Enums
+export 'src/shared/domain/enums/attendance_status.dart';
+export 'src/shared/domain/enums/session_status.dart';
+export 'src/shared/domain/enums/user_role.dart';
+// Errors
+export 'src/shared/domain/errors/unexpected_value_error.dart';
+// Value Objects
+export 'src/shared/domain/value_objects/email_address.dart';
+export 'src/shared/domain/value_objects/non_empty_string.dart';
+export 'src/shared/domain/value_objects/password.dart';
+export 'src/shared/domain/value_objects/unique_id.dart';
+export 'src/shared/domain/value_objects/value_failure.dart';
+export 'src/shared/domain/value_objects/value_object.dart';

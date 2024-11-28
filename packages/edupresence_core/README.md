@@ -1,53 +1,65 @@
 # EduPresence Core
 
-Core package for the EduPresence attendance tracking system, containing shared business logic, models, and data access layers.
+Core package for the EduPresence application, containing domain models, repository interfaces, and shared business logic.
 
 ## Features
 
-### Models
-- `User`: User model with role-based access (professor/student)
-- `Class`: Class model for managing course information
-- `AttendanceSession`: Model for tracking attendance sessions
-- `AttendanceRecord`: Model for individual attendance records
+### Value Objects
+- [x] EmailAddress - Email validation and handling
+- [x] Password - Password validation with rules
+- [x] UniqueId - UUID-based identifiers
+- [x] NonEmptyString - String validation
 
-### Repositories
-- `UserRepository`: Manages user data and authentication
-- `ClassRepository`: Handles class creation and management
-- `AttendanceSessionRepository`: Controls attendance session lifecycle
-- `AttendanceRecord Repository`: Manages individual attendance records
+### Domain Entities
+- [x] User - User model with role management
+- [x] Class - Class/Course management
+- [x] AttendanceSession - Session tracking
+- [x] AttendanceRecord - Individual attendance records
 
-### Providers
-All repositories are provided through Riverpod providers with `keepAlive: true` for persistent state management.
+### Repository Interfaces
+- [x] IAuthRepository - Authentication operations
+- [x] IClassRepository - Class management
+- [x] IAttendanceRepository - Attendance tracking
 
-## Usage
+### Enums
+- [x] UserRole - Professor/Student roles
+- [x] SessionStatus - Attendance session states
+- [x] AttendanceStatus - Student attendance states
 
-Add to your `pubspec.yaml`:
+### Error Handling
+- [x] Value Failures - Input validation errors
+- [x] Auth Failures - Authentication errors
+- [x] Class Failures - Class management errors
+- [x] Attendance Failures - Attendance tracking errors
+
+## Getting Started
+
+Add this package to your Flutter project:
+
 ```yaml
 dependencies:
-  edupresence_core:
-    path: ../edupresence_core
+  edupresence_core: 0.1.0
 ```
 
-## Example
+## Architecture
 
-```dart
-// Access repositories through providers
-final userRepo = ref.watch(userRepositoryProvider);
-final classRepo = ref.watch(classRepositoryProvider);
+The package follows Domain-Driven Design principles:
 
-// Create a new class
-final newClass = await classRepo.createClass(
-  Class(
-    name: 'Flutter Development',
-    professorId: currentUser.id,
-  ),
-);
+- **Entities**: Core business objects
+- **Value Objects**: Type-safe wrappers for primitive types
+- **Repository Interfaces**: Abstract data access
+- **Failure Classes**: Type-safe error handling
 
-// Start an attendance session
-final session = await attendanceSessionRepo.createSession(
-  AttendanceSession(
-    classId: newClass.id,
-    startTime: DateTime.now(),
-  ),
-);
-```
+## Dependencies
+
+- `freezed`: For immutable data classes
+- `dartz`: For functional error handling
+- `uuid`: For unique identifiers
+- `flutter_riverpod`: For dependency injection
+
+## Contributing
+
+1. Ensure you have the latest Flutter SDK
+2. Run tests: `flutter test`
+3. Run analyzer: `flutter analyze`
+4. Generate code: `flutter pub run build_runner build`

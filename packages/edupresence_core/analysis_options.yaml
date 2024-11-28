@@ -1,15 +1,18 @@
 include: package:very_good_analysis/analysis_options.yaml
 
-analyzer:
-  errors:
-    avoid_dynamic_calls: ignore
-  exclude:
-    [build/**, lib/**.freezed.dart, lib/**.g.dart]
-
-  plugins:
-    - custom_lint
+# Additional information about this file can be found at
+# https://dart.dev/guides/language/analysis-options
 
 linter:
   rules:
     public_member_api_docs: false
     lines_longer_than_80_chars: false
+
+analyzer:
+  plugins:
+      - custom_lint
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  errors:
+    invalid_annotation_target: ignore
