@@ -10,4 +10,9 @@ class AuthFailure with _$AuthFailure {
       InvalidEmailAndPasswordCombination;
   const factory AuthFailure.cancelledByUser() = CancelledByUser;
   const factory AuthFailure.authServerError() = AuthServerError;
+  const factory AuthFailure.weakPassword() = WeakPassword;
+  const factory AuthFailure.authInvalidEmail() = AuthInvalidEmail;
+  const factory AuthFailure.networkError() = NetworkError;
+  const factory AuthFailure.emailNotVerified() = EmailNotVerified;
+  const factory AuthFailure.tooManyRequests() = TooManyRequests;
 }

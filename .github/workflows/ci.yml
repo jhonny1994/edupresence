@@ -4,6 +4,9 @@ on:
   workflow_dispatch:  # Manual trigger
   pull_request:
     branches: [ main ]
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]  # Run on version tags
 
 jobs:
   analyze:
@@ -25,10 +28,32 @@ jobs:
       - name: Analyze Project
         run: melos run analyze
 
+  test:
+    name: Run Tests
+    needs: analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - uses: bluefireteam/melos-action@v3
+      
+      - name: Install Dependencies
+        run: melos bootstrap
+      
+      - name: Run Tests
+        run: melos run test:coverage
+      
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage/lcov.info
+
   build-android:
     name: Build Android App
-    needs: analyze
-    if: github.event_name == 'workflow_dispatch'  # Only run on manual trigger
+    needs: [analyze, test]
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -42,11 +67,18 @@ jobs:
       
       - name: Build APK
         run: melos run build:android
+      
+      - name: Upload APK
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-release
+          path: build/app/outputs/flutter-apk/app-release.apk
 
   build-windows:
     name: Build Windows App
-    needs: analyze
-    if: github.event_name == 'workflow_dispatch'  # Only run on manual trigger
+    needs: [analyze, test]
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
@@ -60,3 +92,31 @@ jobs:
       
       - name: Build Windows
         run: melos run build:windows
+      
+      - name: Upload Windows Build
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-release
+          path: build/windows/runner/Release
+
+  release:
+    name: Create Release
+    needs: [build-android, build-windows]
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            android-release/app-release.apk
+            windows-release/*
+          draft: true  # Creates a draft release for manual review
+          prerelease: false
+          generate_release_notes: true

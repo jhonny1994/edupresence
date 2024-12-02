@@ -22,11 +22,11 @@ scripts:
     description: Clean build files
 
   build:android:
-    exec: cd apps/edupresence_mobile && flutter build apk
+    exec: cd apps/edupresence_mobile && flutter build apk --release
     description: Build Android app
 
   build:windows:
-    exec: cd apps/edupresence_desktop && flutter build windows
+    exec: cd apps/edupresence_desktop && flutter build windows --release
     description: Build Windows app
 
   generate:
@@ -38,3 +38,25 @@ scripts:
   test:
     exec: flutter test
     description: Run tests
+
+  test:coverage:
+    # Run tests with coverage and generate LCOV report
+    exec: flutter test --coverage && lcov --remove coverage/lcov.info '**/*.g.dart' '**/*.freezed.dart' -o coverage/lcov.info
+    description: Run tests with coverage
+
+  version:
+    # Bump version in pubspec.yaml files
+    exec: |
+      dart pub global activate pubspec_version
+      dart pub global run pubspec_version:set $1
+    description: Update version number (usage - melos run version 1.0.0)
+
+  release:prepare:
+    # Prepare for release - run tests, generate code, etc
+    exec: |
+      melos run clean
+      melos bootstrap
+      melos run generate
+      melos run analyze
+      melos run test:coverage
+    description: Prepare for release by running all checks

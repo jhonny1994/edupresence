@@ -1,0 +1,38 @@
+name: edupresence_supabase
+description: Supabase implementation for EduPresence authentication and database services.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  edupresence_core: 0.1.0
+  supabase_flutter: ^2.8.1
+  flutter_secure_storage: ^9.0.0
+  dartz: ^0.10.1
+  flutter_riverpod: ^2.6.1
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+  riverpod_annotation: ^2.6.1
+  flutter_dotenv: ^5.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.4.13
+  custom_lint: ^0.7.0
+  freezed: ^2.5.7
+  json_serializable: ^6.9.0
+  riverpod_generator: ^2.6.3
+  riverpod_lint: ^2.6.3
+  very_good_analysis: ^6.0.0
+
+# The following section is specific to Flutter packages.
+flutter:
+  # To add assets to your package, add an assets section, like this:
+  assets:
+    - .env
