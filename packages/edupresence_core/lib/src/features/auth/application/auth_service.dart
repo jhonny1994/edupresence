@@ -3,6 +3,7 @@ import 'package:edupresence_core/src/features/auth/domain/entities/user.dart';
 import 'package:edupresence_core/src/features/auth/domain/repositories/auth_failure.dart';
 import 'package:edupresence_core/src/features/auth/domain/repositories/i_auth_repository.dart';
 import 'package:edupresence_core/src/features/auth/infrastructure/providers.dart';
+import 'package:edupresence_core/src/shared/domain/validation/failure_mapper.dart';
 import 'package:edupresence_core/src/shared/domain/validation/form_validation.dart';
 import 'package:edupresence_core/src/shared/domain/value_objects/email_address.dart';
 import 'package:edupresence_core/src/shared/domain/value_objects/password.dart';
@@ -35,26 +36,8 @@ class AuthService {
         FormValidation.combine([emailAddress, passwordObj]);
 
     if (validationResult.isLeft()) {
-      // Map value failures to auth failures
-      return validationResult.fold<Either<AuthFailure, Unit>>(
-        (failure) => left(
-          failure.map(
-            invalidEmail: (_) => const AuthFailure.authInvalidEmail(),
-            shortPassword: (_) => const AuthFailure.weakPassword(),
-            invalidPhoneNumber: (_) => const AuthFailure.serverError(),
-            empty: (_) => const AuthFailure.serverError(),
-            exceedingLength: (_) => const AuthFailure.serverError(),
-            shortInput: (_) => const AuthFailure.serverError(),
-            invalidCharacters: (_) => const AuthFailure.serverError(),
-            missingUppercase: (_) => const AuthFailure.weakPassword(),
-            missingLowercase: (_) => const AuthFailure.weakPassword(),
-            missingNumber: (_) => const AuthFailure.weakPassword(),
-            missingSpecialCharacter: (_) => const AuthFailure.weakPassword(),
-            invalidPattern: (_) => const AuthFailure.serverError(),
-            numberTooLow: (_) => const AuthFailure.serverError(),
-            numberTooHigh: (_) => const AuthFailure.serverError(),
-          ),
-        ),
+      return validationResult.fold(
+        FailureMapper.mapToAuthFailure,
         (_) => throw Error(), // This should never happen
       );
     }
@@ -77,25 +60,8 @@ class AuthService {
         FormValidation.combine([emailAddress, passwordObj]);
 
     if (validationResult.isLeft()) {
-      return validationResult.fold<Either<AuthFailure, Unit>>(
-        (failure) => left(
-          failure.map(
-            invalidEmail: (_) => const AuthFailure.authInvalidEmail(),
-            shortPassword: (_) => const AuthFailure.weakPassword(),
-            invalidPhoneNumber: (_) => const AuthFailure.serverError(),
-            empty: (_) => const AuthFailure.serverError(),
-            exceedingLength: (_) => const AuthFailure.serverError(),
-            shortInput: (_) => const AuthFailure.serverError(),
-            invalidCharacters: (_) => const AuthFailure.serverError(),
-            missingUppercase: (_) => const AuthFailure.weakPassword(),
-            missingLowercase: (_) => const AuthFailure.weakPassword(),
-            missingNumber: (_) => const AuthFailure.weakPassword(),
-            missingSpecialCharacter: (_) => const AuthFailure.weakPassword(),
-            invalidPattern: (_) => const AuthFailure.serverError(),
-            numberTooLow: (_) => const AuthFailure.serverError(),
-            numberTooHigh: (_) => const AuthFailure.serverError(),
-          ),
-        ),
+      return validationResult.fold(
+        FailureMapper.mapToAuthFailure,
         (_) => throw Error(), // This should never happen
       );
     }
@@ -116,25 +82,8 @@ class AuthService {
     final validationResult = FormValidation.combine([emailAddress]);
 
     if (validationResult.isLeft()) {
-      return validationResult.fold<Either<AuthFailure, Unit>>(
-        (failure) => left(
-          failure.map(
-            invalidEmail: (_) => const AuthFailure.authInvalidEmail(),
-            shortPassword: (_) => const AuthFailure.serverError(),
-            invalidPhoneNumber: (_) => const AuthFailure.serverError(),
-            empty: (_) => const AuthFailure.serverError(),
-            exceedingLength: (_) => const AuthFailure.serverError(),
-            shortInput: (_) => const AuthFailure.serverError(),
-            invalidCharacters: (_) => const AuthFailure.serverError(),
-            missingUppercase: (_) => const AuthFailure.serverError(),
-            missingLowercase: (_) => const AuthFailure.serverError(),
-            missingNumber: (_) => const AuthFailure.serverError(),
-            missingSpecialCharacter: (_) => const AuthFailure.serverError(),
-            invalidPattern: (_) => const AuthFailure.serverError(),
-            numberTooLow: (_) => const AuthFailure.serverError(),
-            numberTooHigh: (_) => const AuthFailure.serverError(),
-          ),
-        ),
+      return validationResult.fold(
+        FailureMapper.mapToAuthFailure,
         (_) => throw Error(), // This should never happen
       );
     }
@@ -152,25 +101,8 @@ class AuthService {
     final validationResult = FormValidation.combine([password]);
 
     if (validationResult.isLeft()) {
-      return validationResult.fold<Either<AuthFailure, Unit>>(
-        (failure) => left(
-          failure.map(
-            invalidEmail: (_) => const AuthFailure.serverError(),
-            shortPassword: (_) => const AuthFailure.weakPassword(),
-            invalidPhoneNumber: (_) => const AuthFailure.serverError(),
-            empty: (_) => const AuthFailure.serverError(),
-            exceedingLength: (_) => const AuthFailure.serverError(),
-            shortInput: (_) => const AuthFailure.serverError(),
-            invalidCharacters: (_) => const AuthFailure.serverError(),
-            missingUppercase: (_) => const AuthFailure.weakPassword(),
-            missingLowercase: (_) => const AuthFailure.weakPassword(),
-            missingNumber: (_) => const AuthFailure.weakPassword(),
-            missingSpecialCharacter: (_) => const AuthFailure.weakPassword(),
-            invalidPattern: (_) => const AuthFailure.serverError(),
-            numberTooLow: (_) => const AuthFailure.serverError(),
-            numberTooHigh: (_) => const AuthFailure.serverError(),
-          ),
-        ),
+      return validationResult.fold(
+        FailureMapper.mapToAuthFailure,
         (_) => throw Error(), // This should never happen
       );
     }
